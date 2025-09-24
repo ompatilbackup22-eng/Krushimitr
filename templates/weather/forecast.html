@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ _('Weather Forecast') }} - KrishiMitra: Agriband{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="h3 mb-0">
+                <i class="fas fa-chart-line text-info me-2"></i>{{ _('Weather Forecast & Analysis') }}
+            </h2>
+            <p class="text-muted mt-2">{{ _('Based on recent weather patterns and trends') }}</p>
+        </div>
+    </div>
+    
+    <!-- Current Weather -->
+    {% if forecast.current %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">{{ _('Current Weather Conditions') }}</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h5 class="text-warning mb-1">{{ "%.1f"|format(forecast.current.temperature) }}°C</h5>
+                                <small class="text-muted">{{ _('Temperature') }}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h5 class="text-info mb-1">{{ "%.1f"|format(forecast.current.humidity) }}%</h5>
+                                <small class="text-muted">{{ _('Humidity') }}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h5 class="text-primary mb-1">{{ "%.1f"|format(forecast.current.rainfall) }}mm</h5>
+                                <small class="text-muted">{{ _('Rainfall') }}</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h5 class="text-secondary mb-1">{{ forecast.trend.title() }}</h5>
+                                <small class="text-muted">{{ _('Trend') }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Weather Recommendations -->
+    {% if forecast.recommendations %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">
+                        <i class="fas fa-lightbulb text-warning me-2"></i>{{ _('Weather-Based Recommendations') }}
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        {% for recommendation in forecast.recommendations %}
+                        <div class="list-group-item border-0 px-0">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-arrow-right text-primary me-3 mt-1"></i>
+                                <div>
+                                    <h6 class="mb-1">{{ recommendation }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Recent Weather History -->
+    {% if recent_weather %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">{{ _('Recent Weather History') }}</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{{ _('Date') }}</th>
+                                    <th>{{ _('Temperature') }}</th>
+                                    <th>{{ _('Humidity') }}</th>
+                                    <th>{{ _('Rainfall') }}</th>
+                                    <th>{{ _('Actions') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for weather in recent_weather %}
+                                <tr>
+                                    <td>{{ weather.date.strftime('%Y-%m-%d') }}</td>
+                                    <td>
+                                        <span class="badge bg-warning">{{ "%.1f"|format(weather.temperature) }}°C</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-info">{{ "%.1f"|format(weather.humidity) }}%</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-primary">{{ "%.1f"|format(weather.rainfall) }}mm</span>
+                                    </td>
+                                    <td>
+                                        <a href="{{ url_for('weather.view', weather_id=weather.id) }}" class="btn btn-outline-primary btn-sm">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Action Buttons -->
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <div class="d-flex gap-2 justify-content-center">
+                <a href="{{ url_for('weather.add') }}" class="btn btn-primary">
+                    <i class="fas fa-plus me-2"></i>{{ _('Add Weather Data') }}
+                </a>
+                <a href="{{ url_for('crops.recommend') }}" class="btn btn-warning">
+                    <i class="fas fa-seedling me-2"></i>{{ _('Get Crop Recommendations') }}
+                </a>
+                <a href="{{ url_for('weather.index') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>{{ _('Back to Weather Data') }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

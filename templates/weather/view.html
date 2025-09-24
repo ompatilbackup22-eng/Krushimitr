@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ _('Weather Data Details') }} - KrishiMitra: Agriband{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="h3 mb-0">
+                    <i class="fas fa-cloud-sun text-info me-2"></i>{{ _('Weather Data Details') }}
+                </h2>
+                <div class="d-flex gap-2">
+                    <a href="{{ url_for('weather.forecast') }}" class="btn btn-info">
+                        <i class="fas fa-chart-line me-2"></i>{{ _('Forecast') }}
+                    </a>
+                    <a href="{{ url_for('weather.index') }}" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>{{ _('Back to List') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">{{ _('Weather Conditions') }}</h6>
+                    <small class="text-muted">{{ weather_data.date.strftime('%Y-%m-%d %H:%M') }}</small>
+                </div>
+                <div class="card-body">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="text-center p-4 bg-light rounded">
+                                <i class="fas fa-thermometer-half fa-2x text-warning mb-3"></i>
+                                <h4 class="text-warning mb-1">{{ "%.1f"|format(weather_data.temperature) }}°C</h4>
+                                <h6 class="text-muted">{{ _('Temperature') }}</h6>
+                                <small class="text-muted">
+                                    {% if weather_data.temperature < 15 %}
+                                        <span class="text-info">{{ _('Cool') }}</span>
+                                    {% elif weather_data.temperature > 30 %}
+                                        <span class="text-danger">{{ _('Hot') }}</span>
+                                    {% else %}
+                                        <span class="text-success">{{ _('Moderate') }}</span>
+                                    {% endif %}
+                                </small>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="text-center p-4 bg-light rounded">
+                                <i class="fas fa-tint fa-2x text-info mb-3"></i>
+                                <h4 class="text-info mb-1">{{ "%.1f"|format(weather_data.humidity) }}%</h4>
+                                <h6 class="text-muted">{{ _('Humidity') }}</h6>
+                                <small class="text-muted">
+                                    {% if weather_data.humidity < 40 %}
+                                        <span class="text-warning">{{ _('Dry') }}</span>
+                                    {% elif weather_data.humidity > 80 %}
+                                        <span class="text-primary">{{ _('Humid') }}</span>
+                                    {% else %}
+                                        <span class="text-success">{{ _('Comfortable') }}</span>
+                                    {% endif %}
+                                </small>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="text-center p-4 bg-light rounded">
+                                <i class="fas fa-cloud-rain fa-2x text-primary mb-3"></i>
+                                <h4 class="text-primary mb-1">{{ "%.1f"|format(weather_data.rainfall) }}mm</h4>
+                                <h6 class="text-muted">{{ _('Rainfall') }}</h6>
+                                <small class="text-muted">
+                                    {% if weather_data.rainfall == 0 %}
+                                        <span class="text-secondary">{{ _('No Rain') }}</span>
+                                    {% elif weather_data.rainfall < 10 %}
+                                        <span class="text-info">{{ _('Light Rain') }}</span>
+                                    {% elif weather_data.rainfall < 25 %}
+                                        <span class="text-primary">{{ _('Moderate Rain') }}</span>
+                                    {% else %}
+                                        <span class="text-warning">{{ _('Heavy Rain') }}</span>
+                                    {% endif %}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">{{ _('Additional Information') }}</h6>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h6 class="text-muted">{{ _('Recorded Date') }}</h6>
+                        <p class="mb-0">{{ weather_data.date.strftime('%B %d, %Y') }}</p>
+                        <small class="text-muted">{{ weather_data.date.strftime('%I:%M %p') }}</small>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h6 class="text-muted">Weather Summary</h6>
+                        <p class="mb-0">
+                            {% if weather_data.temperature > 30 and weather_data.humidity > 70 %}
+                                Hot and Humid
+                            {% elif weather_data.temperature < 15 %}
+                                Cool Weather
+                            {% elif weather_data.rainfall > 10 %}
+                                Rainy Conditions
+                            {% else %}
+                                Pleasant Weather
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card border-0 shadow-sm mt-3">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">Quick Actions</h6>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{{ url_for('weather.forecast') }}" class="btn btn-info">
+                            <i class="fas fa-chart-line me-2"></i>View Forecast
+                        </a>
+                        <a href="{{ url_for('crops.recommend') }}" class="btn btn-warning">
+                            <i class="fas fa-seedling me-2"></i>Get Crop Recommendations
+                        </a>
+                        <a href="{{ url_for('reports.generate_report') }}" class="btn btn-success">
+                            <i class="fas fa-file-pdf me-2"></i>Generate Report
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Upcoming Alerts') }} - KrishiMitra: Agriband{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="h3 mb-0">
+                    <i class="fas fa-clock text-warning me-2"></i>{{ _('Upcoming Alerts (Next 7 Days)') }}
+                </h2>
+                <a href="{{ url_for('alerts.index') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>{{ _('Back to All Alerts') }}
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    {% if upcoming_alerts %}
+    <div class="row g-4">
+        {% for alert in upcoming_alerts %}
+        <div class="col-12">
+            <div class="card border-0 shadow-sm alert-card {{ alert.alert_type }}">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-{{ 'tint' if alert.alert_type == 'irrigation' else 'flask' if alert.alert_type == 'fertilizer' else 'spray-can' if alert.alert_type == 'spray' else 'harvest' }} 
+                                   text-{{ 'info' if alert.alert_type == 'irrigation' else 'warning' if alert.alert_type == 'fertilizer' else 'success' if alert.alert_type == 'spray' else 'primary' }} me-3"></i>
+                                <h6 class="card-title mb-0">{{ alert.alert_type.title() }} - {{ alert.crop.crop_name }}</h6>
+                                <span class="badge bg-warning ms-2">Upcoming</span>
+                            </div>
+                            <p class="card-text text-muted mb-2">{{ alert.message }}</p>
+                            <small class="text-muted">
+                                <i class="fas fa-calendar-alt me-1"></i>{{ alert.alert_date.strftime('%Y-%m-%d %H:%M') }}
+                                <span class="ms-3">
+                                    <i class="fas fa-clock me-1"></i>
+                                    {% set days_until = (alert.alert_date.date() - current_date).days %}
+                                    {% if days_until == 0 %}
+                                        Today
+                                    {% elif days_until == 1 %}
+                                        Tomorrow
+                                    {% else %}
+                                        In {{ days_until }} days
+                                    {% endif %}
+                                </span>
+                            </small>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <div class="d-flex gap-2 justify-content-md-end">
+                                <form method="POST" action="{{ url_for('alerts.complete_alert', alert_id=alert.id) }}" class="d-inline">
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        <i class="fas fa-check me-1"></i>Mark Complete
+                                    </button>
+                                </form>
+                                <form method="POST" action="{{ url_for('alerts.dismiss_alert', alert_id=alert.id) }}" class="d-inline">
+                                    <button type="submit" class="btn btn-outline-secondary btn-sm">
+                                        <i class="fas fa-times me-1"></i>Dismiss
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <i class="fas fa-clock fa-4x text-muted mb-4"></i>
+        <h4 class="text-muted">No Upcoming Alerts</h4>
+        <p class="text-muted mb-4">You have no alerts scheduled for the next 7 days.</p>
+        <a href="{{ url_for('alerts.generate_alerts') }}" class="btn btn-warning">
+            <i class="fas fa-sync-alt me-2"></i>Generate Alerts
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

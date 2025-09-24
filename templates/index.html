@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('KrishiMitra: Agriband') }} - {{ _('Smart Farming Decision Support System') }}{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section bg-success text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">{{ _('KrishiMitra: Agriband') }}</h1>
+                <p class="lead mb-4">{{ _('Empowering farmers with smart technology for better crop yields and sustainable farming practices.') }}</p>
+                <div class="d-flex gap-3">
+                    {% if not session.farmer_id %}
+                    <a href="{{ url_for('auth.register') }}" class="btn btn-light btn-lg">{{ _('Get Started') }}</a>
+                    <a href="{{ url_for('auth.login') }}" class="btn btn-outline-light btn-lg">{{ _('Login') }}</a>
+                    {% else %}
+                    <a href="{{ url_for('dashboard.index') }}" class="btn btn-light btn-lg">{{ _('Go to Dashboard') }}</a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="text-center">
+                    <i class="fas fa-seedling display-1 mb-3"></i>
+                    <h3>{{ _('Smart Farming Made Simple') }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-5 fw-bold">{{ _('Key Features') }}</h2>
+                <p class="lead">{{ _('Everything you need for smart farming in one platform') }}</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-flask fa-lg"></i>
+                        </div>
+                        <h5 class="card-title">{{ _('Soil Analysis') }}</h5>
+                        <p class="card-text">{{ _('Comprehensive soil testing and analysis to understand your soil\'s health and nutrient levels.') }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-cloud-sun fa-lg"></i>
+                        </div>
+                        <h5 class="card-title">{{ _('Weather Monitoring') }}</h5>
+                        <p class="card-text">{{ _('Real-time weather data and forecasts to help you make informed farming decisions.') }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-warning text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-seedling fa-lg"></i>
+                        </div>
+                        <h5 class="card-title">{{ _('Crop Recommendations') }}</h5>
+                        <p class="card-text">{{ _('AI-powered crop recommendations based on your soil and weather conditions.') }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-calendar-alt fa-lg"></i>
+                        </div>
+                        <h5 class="card-title">{{ _('Crop Calendar') }}</h5>
+                        <p class="card-text">{{ _('Detailed crop calendar with sowing, irrigation, and harvest schedules.') }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-danger text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-bell fa-lg"></i>
+                        </div>
+                        <h5 class="card-title">{{ _('Smart Alerts') }}</h5>
+                        <p class="card-text">{{ _('Get timely reminders for irrigation, fertilization, and pest control activities.') }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon bg-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-play-circle fa-lg"></i>
+                        </div>
+                        <h5 class="card-title">{{ _('Video Guidance') }}</h5>
+                        <p class="card-text">{{ _('Access to best management practice videos and expert guidance.') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-5 fw-bold">{{ _('How It Works') }}</h2>
+                <p class="lead">{{ _('Simple steps to get started with smart farming') }}</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-3 text-center">
+                <div class="step-number bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                    <span class="fw-bold">1</span>
+                </div>
+                <h5>{{ _('Register & Login') }}</h5>
+                <p>{{ _('Create your farmer profile with location details') }}</p>
+            </div>
+            
+            <div class="col-md-3 text-center">
+                <div class="step-number bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                    <span class="fw-bold">2</span>
+                </div>
+                <h5>{{ _('Add Soil Data') }}</h5>
+                <p>{{ _('Input your soil test results and conditions') }}</p>
+            </div>
+            
+            <div class="col-md-3 text-center">
+                <div class="step-number bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                    <span class="fw-bold">3</span>
+                </div>
+                <h5>{{ _('Get Recommendations') }}</h5>
+                <p>{{ _('Receive personalized crop and farming recommendations') }}</p>
+            </div>
+            
+            <div class="col-md-3 text-center">
+                <div class="step-number bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                    <span class="fw-bold">4</span>
+                </div>
+                <h5>{{ _('Follow Calendar') }}</h5>
+                <p>{{ _('Use the crop calendar and alerts for optimal farming') }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-success text-white">
+    <div class="container text-center">
+        <h2 class="display-5 fw-bold mb-4">{{ _('Ready to Start Smart Farming?') }}</h2>
+        <p class="lead mb-4">{{ _('Join thousands of farmers who are already using KrishiMitra to improve their yields') }}</p>
+        {% if not session.farmer_id %}
+        <a href="{{ url_for('auth.register') }}" class="btn btn-light btn-lg">{{ _('Register Now') }}</a>
+        {% else %}
+        <a href="{{ url_for('dashboard.index') }}" class="btn btn-light btn-lg">{{ _('Go to Dashboard') }}</a>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

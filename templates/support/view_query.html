@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}Query Details - KrishiMitra: Agriband{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="h3 mb-0">
+                    <i class="fas fa-comments text-info me-2"></i>Query Details
+                </h2>
+                <a href="{{ url_for('support.index') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Support
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h6 class="card-title mb-0">Your Question</h6>
+                        <span class="badge bg-{{ 'warning' if query.status == 'pending' else 'success' }}">
+                            {{ query.status.title() }}
+                        </span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ query.question }}</p>
+                    <small class="text-muted">
+                        <i class="fas fa-calendar-alt me-1"></i>Submitted on {{ query.created_at.strftime('%Y-%m-%d %H:%M') }}
+                    </small>
+                </div>
+            </div>
+            
+            {% if query.reply %}
+            <div class="card border-0 shadow-sm mt-4">
+                <div class="card-header bg-success text-white border-0">
+                    <h6 class="card-title mb-0">
+                        <i class="fas fa-user-tie me-2"></i>Expert Response
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ query.reply }}</p>
+                    {% if query.answered_at %}
+                    <small class="text-muted">
+                        <i class="fas fa-calendar-alt me-1"></i>Answered on {{ query.answered_at.strftime('%Y-%m-%d %H:%M') }}
+                    </small>
+                    {% endif %}
+                </div>
+            </div>
+            {% else %}
+            <div class="card border-0 shadow-sm mt-4">
+                <div class="card-body text-center py-4">
+                    <i class="fas fa-clock fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">Waiting for Expert Response</h5>
+                    <p class="text-muted">Our agricultural experts are reviewing your question and will respond soon.</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">Query Information</h6>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h6 class="text-muted">Status</h6>
+                        <span class="badge bg-{{ 'warning' if query.status == 'pending' else 'success' }}">
+                            {{ query.status.title() }}
+                        </span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h6 class="text-muted">Submitted</h6>
+                        <p class="mb-0">{{ query.created_at.strftime('%B %d, %Y') }}</p>
+                        <small class="text-muted">{{ query.created_at.strftime('%I:%M %p') }}</small>
+                    </div>
+                    
+                    {% if query.answered_at %}
+                    <div class="mb-3">
+                        <h6 class="text-muted">Answered</h6>
+                        <p class="mb-0">{{ query.answered_at.strftime('%B %d, %Y') }}</p>
+                        <small class="text-muted">{{ query.answered_at.strftime('%I:%M %p') }}</small>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="card border-0 shadow-sm mt-3">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">Need More Help?</h6>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{{ url_for('support.ask') }}" class="btn btn-primary">
+                            <i class="fas fa-plus me-2"></i>Ask Another Question
+                        </a>
+                        <a href="{{ url_for('support.faq') }}" class="btn btn-outline-info">
+                            <i class="fas fa-book me-2"></i>View FAQ
+                        </a>
+                        <a href="{{ url_for('support.contact') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-phone me-2"></i>Contact Support
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

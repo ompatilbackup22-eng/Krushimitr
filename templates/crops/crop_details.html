@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block title %}{{ crop.crop_name }} Details - KrishiMitra: Agriband{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="h3 mb-0">
+                    <i class="fas fa-seedling text-warning me-2"></i>{{ crop.crop_name }}
+                </h2>
+                <div class="d-flex gap-2">
+                    <a href="{{ url_for('crops.calendar', crop_id=crop.id) }}" class="btn btn-primary">
+                        <i class="fas fa-calendar-alt me-2"></i>View Calendar
+                    </a>
+                    <a href="{{ url_for('crops.knowledge') }}" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Crops
+                    </a>
+                </div>
+            </div>
+            <p class="text-muted mt-2">{{ crop.season }} season • {{ crop.duration_days }} days duration</p>
+        </div>
+    </div>
+    
+    <div class="row g-4">
+        <!-- Basic Information -->
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">Basic Information</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="d-flex justify-content-between">
+                                <span class="text-muted">Crop Name:</span>
+                                <strong>{{ crop.crop_name }}</strong>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex justify-content-between">
+                                <span class="text-muted">Season:</span>
+                                <strong>{{ crop.season }}</strong>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex justify-content-between">
+                                <span class="text-muted">Duration:</span>
+                                <strong>{{ crop.duration_days }} days</strong>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex justify-content-between">
+                                <span class="text-muted">pH Range:</span>
+                                <strong>{{ crop.ph_min }}-{{ crop.ph_max }}</strong>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex justify-content-between">
+                                <span class="text-muted">Temperature:</span>
+                                <strong>{{ crop.temp_min }}°C - {{ crop.temp_max }}°C</strong>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex justify-content-between">
+                                <span class="text-muted">Moisture:</span>
+                                <strong>{{ crop.moisture_req }}%</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Nutrient Requirements -->
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">Nutrient Requirements</h6>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>Nitrogen (N)</span>
+                            <span class="badge bg-success">{{ crop.nitrogen_req }} ppm</span>
+                        </div>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-success" style="width: {{ (crop.nitrogen_req / 50) * 100 }}%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>Phosphorus (P)</span>
+                            <span class="badge bg-warning">{{ crop.phosphorus_req }} ppm</span>
+                        </div>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-warning" style="width: {{ (crop.phosphorus_req / 30) * 100 }}%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>Potassium (K)</span>
+                            <span class="badge bg-danger">{{ crop.potassium_req }} ppm</span>
+                        </div>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-danger" style="width: {{ (crop.potassium_req / 40) * 100 }}%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notes and Additional Information -->
+    {% if crop.notes %}
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">Additional Information</h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ crop.notes }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Action Buttons -->
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <div class="d-flex gap-2 justify-content-center">
+                <a href="{{ url_for('crops.calendar', crop_id=crop.id) }}" class="btn btn-primary">
+                    <i class="fas fa-calendar-alt me-2"></i>View Farming Calendar
+                </a>
+                <a href="{{ url_for('crops.recommend') }}" class="btn btn-warning">
+                    <i class="fas fa-seedling me-2"></i>Get Recommendations
+                </a>
+                <a href="{{ url_for('reports.generate_report') }}" class="btn btn-success">
+                    <i class="fas fa-file-pdf me-2"></i>Generate Report
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

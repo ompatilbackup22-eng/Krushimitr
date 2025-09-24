@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Edit Profile') }} - KrishiMitra: Agriband{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="h3 mb-0">
+                    <i class="fas fa-edit text-primary me-2"></i>{{ _('Edit Profile') }}
+                </h2>
+                <a href="{{ url_for('dashboard.profile') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>{{ _('Back to Profile') }}
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-0 shadow">
+                <div class="card-header bg-white border-0 text-center">
+                    <h3 class="h4 fw-bold mb-0">
+                        <i class="fas fa-user-edit text-primary me-2"></i>{{ _('Update Profile Information') }}
+                    </h3>
+                    <p class="text-muted mt-2">{{ _('Keep your information up to date') }}</p>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label">Full Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input type="text" class="form-control" id="name" name="name" 
+                                           value="{{ farmer.name }}" required>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="mobile" class="form-label">Mobile Number</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                                    <input type="tel" class="form-control" id="mobile" name="mobile" 
+                                           value="{{ farmer.mobile }}" readonly>
+                                </div>
+                                <div class="form-text">Mobile number cannot be changed</div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="village" class="form-label">Village</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-home"></i></span>
+                                    <input type="text" class="form-control" id="village" name="village" 
+                                           value="{{ farmer.village }}" required>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="tehsil" class="form-label">Tehsil</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                    <input type="text" class="form-control" id="tehsil" name="tehsil" 
+                                           value="{{ farmer.tehsil }}" required>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="district" class="form-label">District</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-map"></i></span>
+                                    <input type="text" class="form-control" id="district" name="district" 
+                                           value="{{ farmer.district }}" required>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="pincode" class="form-label">Pincode</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-mail-bulk"></i></span>
+                                    <input type="text" class="form-control" id="pincode" name="pincode" 
+                                           value="{{ farmer.pincode }}" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a href="{{ url_for('dashboard.profile') }}" class="btn btn-outline-secondary me-md-2">Cancel</a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-2"></i>Update Profile
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

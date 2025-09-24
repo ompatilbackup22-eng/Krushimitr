@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Language Test - KrishiMitra{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Language Test Page</h3>
+                </div>
+                <div class="card-body">
+                    <h4>Current Language Information:</h4>
+                    <ul>
+                        <li><strong>Current Locale:</strong> {{ get_locale() }}</li>
+                        <li><strong>Session Language:</strong> {{ current_language }}</li>
+                        <li><strong>Available Languages:</strong> English, Hindi (हिन्दी), Marathi (मराठी)</li>
+                    </ul>
+                    
+                    <h4>Translation Tests:</h4>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>English</th>
+                                <th>Translated</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Home</td>
+                                <td>{{ _('Home') }}</td>
+                            </tr>
+                            <tr>
+                                <td>About</td>
+                                <td>{{ _('About') }}</td>
+                            </tr>
+                            <tr>
+                                <td>Login</td>
+                                <td>{{ _('Login') }}</td>
+                            </tr>
+                            <tr>
+                                <td>Register</td>
+                                <td>{{ _('Register') }}</td>
+                            </tr>
+                            <tr>
+                                <td>Soil Analysis</td>
+                                <td>{{ _('Soil Analysis') }}</td>
+                            </tr>
+                            <tr>
+                                <td>Weather Monitoring</td>
+                                <td>{{ _('Weather Monitoring') }}</td>
+                            </tr>
+                            <tr>
+                                <td>Crop Recommendations</td>
+                                <td>{{ _('Crop Recommendations') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h4>Language Switcher Test:</h4>
+                    <div class="btn-group" role="group">
+                        <a href="{{ url_for('set_language', language='en') }}" class="btn btn-outline-primary">English</a>
+                        <a href="{{ url_for('set_language', language='hi') }}" class="btn btn-outline-success">हिन्दी</a>
+                        <a href="{{ url_for('set_language', language='mr') }}" class="btn btn-outline-warning">मराठी</a>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <a href="{{ url_for('index') }}" class="btn btn-primary">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

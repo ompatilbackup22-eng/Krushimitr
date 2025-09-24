@@ -1,0 +1,295 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Dashboard') }} - KrishiMitra: Agriband{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Welcome Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 bg-success text-white">
+                <div class="card-body p-4">
+                    <h1 class="h3 mb-2">{{ _('Welcome back, %(name)s!', name=farmer.name) }}</h1>
+                    <p class="mb-0">{{ _('Here\'s your farming overview for today') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Quick Stats -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="feature-icon bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 50px; height: 50px;">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h5 class="card-title">{{ _('Soil Tests') }}</h5>
+                    <p class="card-text text-muted">{{ soil_history|length }} {{ _('records') }}</p>
+                    <a href="{{ url_for('soil.index') }}" class="btn btn-outline-primary btn-sm">{{ _('View All') }}</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="feature-icon bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 50px; height: 50px;">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <h5 class="card-title">{{ _('Weather Data') }}</h5>
+                    <p class="card-text text-muted">{{ weather_history|length }} {{ _('records') }}</p>
+                    <a href="{{ url_for('weather.index') }}" class="btn btn-outline-info btn-sm">{{ _('View All') }}</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="feature-icon bg-warning text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 50px; height: 50px;">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h5 class="card-title">{{ _('Crop Recommendations') }}</h5>
+                    <p class="card-text text-muted">{{ recommendations|length }} {{ _('active') }}</p>
+                    <a href="{{ url_for('crops.index') }}" class="btn btn-outline-warning btn-sm">{{ _('View All') }}</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="feature-icon bg-danger text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 50px; height: 50px;">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h5 class="card-title">{{ _('Pending Alerts') }}</h5>
+                    <p class="card-text text-muted">{{ pending_alerts|length }} {{ _('alerts') }}</p>
+                    <a href="{{ url_for('alerts.index') }}" class="btn btn-outline-danger btn-sm">{{ _('View All') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row g-4">
+        <!-- Latest Soil Data -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-flask text-primary me-2"></i>{{ _('Latest Soil Data') }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if latest_soil %}
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h6 class="text-muted mb-1">{{ _('pH Level') }}</h6>
+                                <h4 class="mb-0 text-primary">{{ "%.2f"|format(latest_soil.ph) }}</h4>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h6 class="text-muted mb-1">{{ _('Moisture') }}</h6>
+                                <h4 class="mb-0 text-info">{{ "%.1f"|format(latest_soil.moisture) }}%</h4>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h6 class="text-muted mb-1">{{ _('Nitrogen') }}</h6>
+                                <h5 class="mb-0 text-success">{{ "%.1f"|format(latest_soil.nitrogen) }}</h5>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h6 class="text-muted mb-1">{{ _('Phosphorus') }}</h6>
+                                <h5 class="mb-0 text-warning">{{ "%.1f"|format(latest_soil.phosphorus) }}</h5>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h6 class="text-muted mb-1">{{ _('Potassium') }}</h6>
+                                <h5 class="mb-0 text-danger">{{ "%.1f"|format(latest_soil.potassium) }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <small class="text-muted">{{ _('Last updated: %(date)s', date=latest_soil.date.strftime('%Y-%m-%d')) }}</small>
+                        <div class="mt-2">
+                            <a href="{{ url_for('soil.analysis') }}" class="btn btn-primary btn-sm me-2">{{ _('Analyze') }}</a>
+                            <a href="{{ url_for('soil.add') }}" class="btn btn-outline-primary btn-sm">{{ _('Add New') }}</a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-4">
+                        <i class="fas fa-flask fa-3x text-muted mb-3"></i>
+                        <h6 class="text-muted">{{ _('No soil data available') }}</h6>
+                        <a href="{{ url_for('soil.add') }}" class="btn btn-primary">{{ _('Add Soil Data') }}</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Latest Weather Data -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-cloud-sun text-info me-2"></i>{{ _('Latest Weather Data') }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if latest_weather %}
+                    <div class="row g-3">
+                        <div class="col-4">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h6 class="text-muted mb-1">{{ _('Temperature') }}</h6>
+                                <h4 class="mb-0 text-warning">{{ "%.1f"|format(latest_weather.temperature) }}°C</h4>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h6 class="text-muted mb-1">{{ _('Humidity') }}</h6>
+                                <h4 class="mb-0 text-info">{{ "%.1f"|format(latest_weather.humidity) }}%</h4>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h6 class="text-muted mb-1">{{ _('Rainfall') }}</h6>
+                                <h4 class="mb-0 text-primary">{{ "%.1f"|format(latest_weather.rainfall) }}mm</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <small class="text-muted">{{ _('Last updated: %(date)s', date=latest_weather.date.strftime('%Y-%m-%d')) }}</small>
+                        <div class="mt-2">
+                            <a href="{{ url_for('weather.forecast') }}" class="btn btn-info btn-sm me-2">{{ _('Forecast') }}</a>
+                            <a href="{{ url_for('weather.add') }}" class="btn btn-outline-info btn-sm">{{ _('Add New') }}</a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-4">
+                        <i class="fas fa-cloud-sun fa-3x text-muted mb-3"></i>
+                        <h6 class="text-muted">{{ _('No weather data available') }}</h6>
+                        <a href="{{ url_for('weather.add') }}" class="btn btn-info">{{ _('Add Weather Data') }}</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recent Recommendations -->
+    {% if recommendations %}
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-seedling text-warning me-2"></i>{{ _('Recent Crop Recommendations') }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        {% for rec in recommendations[:3] %}
+                        <div class="col-md-4">
+                            <div class="card border">
+                                <div class="card-body">
+                                    <h6 class="card-title">{{ rec.crop.crop_name }}</h6>
+                                    <p class="card-text text-muted small">{{ rec.crop.season }} {{ _('Season') }}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-success">{{ "%.1f"|format(rec.confidence_score) }}% Match</span>
+                                        <a href="{{ url_for('crops.calendar', crop_id=rec.crop.id) }}" class="btn btn-outline-primary btn-sm">{{ _('View Calendar') }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="text-center mt-3">
+                        <a href="{{ url_for('crops.index') }}" class="btn btn-outline-warning">{{ _('View All Recommendations') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Pending Alerts -->
+    {% if pending_alerts %}
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-bell text-danger me-2"></i>{{ _('Pending Alerts') }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        {% for alert in pending_alerts[:5] %}
+                        <div class="list-group-item border-0 px-0">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="mb-1">{{ alert.alert_type.title() }} - {{ alert.crop.crop_name }}</h6>
+                                    <p class="mb-1 text-muted">{{ alert.message }}</p>
+                                    <small class="text-muted">{{ alert.alert_date.strftime('%Y-%m-%d') }}</small>
+                                </div>
+                                <div>
+                                    <span class="badge bg-{{ 'danger' if alert.alert_date.date() <= current_date else 'warning' }}">
+                                        {{ _('Overdue') if alert.alert_date.date() <= current_date else _('Upcoming') }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="text-center mt-3">
+                        <a href="{{ url_for('alerts.index') }}" class="btn btn-outline-danger">{{ _('View All Alerts') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    
+    <!-- Quick Actions -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-bolt text-success me-2"></i>{{ _('Quick Actions') }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <a href="{{ url_for('soil.add') }}" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-flask me-2"></i>{{ _('Add Soil Data') }}
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="{{ url_for('weather.add') }}" class="btn btn-outline-info w-100">
+                                <i class="fas fa-cloud-sun me-2"></i>{{ _('Add Weather Data') }}
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="{{ url_for('crops.recommend') }}" class="btn btn-outline-warning w-100">
+                                <i class="fas fa-seedling me-2"></i>{{ _('Get Recommendations') }}
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="{{ url_for('reports.generate_report') }}" class="btn btn-outline-success w-100">
+                                <i class="fas fa-file-pdf me-2"></i>{{ _('Generate Report') }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

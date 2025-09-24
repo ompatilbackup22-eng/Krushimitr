@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}FAQ - KrishiMitra: Agriband{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="h3 mb-0">
+                <i class="fas fa-book text-success me-2"></i>Frequently Asked Questions
+            </h2>
+            <p class="text-muted mt-2">Find quick answers to common farming questions</p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="accordion" id="faqAccordion">
+                {% for faq in faqs %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ loop.index }}">
+                        <button class="accordion-button {% if loop.index != 1 %}collapsed{% endif %}" type="button" 
+                                data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}" 
+                                aria-expanded="{% if loop.index == 1 %}true{% else %}false{% endif %}" 
+                                aria-controls="collapse{{ loop.index }}">
+                            {{ faq.question }}
+                        </button>
+                    </h2>
+                    <div id="collapse{{ loop.index }}" class="accordion-collapse collapse {% if loop.index == 1 %}show{% endif %}" 
+                         aria-labelledby="heading{{ loop.index }}" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            {{ faq.answer }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">Still Need Help?</h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted mb-3">Can't find the answer you're looking for? Our experts are here to help.</p>
+                    <div class="d-grid gap-2">
+                        <a href="{{ url_for('support.ask') }}" class="btn btn-primary">
+                            <i class="fas fa-question-circle me-2"></i>Ask a Question
+                        </a>
+                        <a href="{{ url_for('support.contact') }}" class="btn btn-outline-info">
+                            <i class="fas fa-phone me-2"></i>Contact Support
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card border-0 shadow-sm mt-3">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">Quick Links</h6>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        <a href="{{ url_for('soil.index') }}" class="list-group-item list-group-item-action border-0">
+                            <i class="fas fa-flask text-primary me-2"></i>Soil Data Management
+                        </a>
+                        <a href="{{ url_for('weather.index') }}" class="list-group-item list-group-item-action border-0">
+                            <i class="fas fa-cloud-sun text-info me-2"></i>Weather Data
+                        </a>
+                        <a href="{{ url_for('crops.recommend') }}" class="list-group-item list-group-item-action border-0">
+                            <i class="fas fa-seedling text-warning me-2"></i>Crop Recommendations
+                        </a>
+                        <a href="{{ url_for('videos.index') }}" class="list-group-item list-group-item-action border-0">
+                            <i class="fas fa-play-circle text-secondary me-2"></i>Educational Videos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

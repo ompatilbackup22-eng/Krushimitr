@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block title %}Soil Analysis - KrishiMitra: Agriband{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="h3 mb-0">
+                <i class="fas fa-chart-line text-primary me-2"></i>Soil Analysis Report
+            </h2>
+            <p class="text-muted mt-2">Based on your latest soil test data</p>
+        </div>
+    </div>
+    
+    <!-- Soil Data Summary -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">Current Soil Conditions</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-2">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h5 class="text-primary mb-1">{{ "%.2f"|format(soil_data.ph) }}</h5>
+                                <small class="text-muted">pH Level</small>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h5 class="text-info mb-1">{{ "%.1f"|format(soil_data.moisture) }}%</h5>
+                                <small class="text-muted">Moisture</small>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h5 class="text-success mb-1">{{ "%.1f"|format(soil_data.nitrogen) }}</h5>
+                                <small class="text-muted">Nitrogen</small>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h5 class="text-warning mb-1">{{ "%.1f"|format(soil_data.phosphorus) }}</h5>
+                                <small class="text-muted">Phosphorus</small>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h5 class="text-danger mb-1">{{ "%.1f"|format(soil_data.potassium) }}</h5>
+                                <small class="text-muted">Potassium</small>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="text-center p-3 bg-light rounded">
+                                <h5 class="text-secondary mb-1">{{ soil_data.soil_type }}</h5>
+                                <small class="text-muted">Soil Type</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Analysis Results -->
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">Parameter Analysis</h6>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>pH Level</span>
+                            <span class="badge bg-{{ 'success' if analysis.ph_status == 'Optimal' else 'warning' }}">
+                                {{ analysis.ph_status }}
+                            </span>
+                        </div>
+                        <div class="progress" style="height: 8px;">
+                            {% set ph_width = '100' if analysis.ph_status == 'Optimal' else '60' %}
+                            <div class="progress-bar bg-{{ 'success' if analysis.ph_status == 'Optimal' else 'warning' }}" 
+                                 style="width: {{ ph_width }}%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>Moisture Level</span>
+                            <span class="badge bg-{{ 'success' if analysis.moisture_status == 'Adequate' else 'warning' }}">
+                                {{ analysis.moisture_status }}
+                            </span>
+                        </div>
+                        <div class="progress" style="height: 8px;">
+                            {% set moisture_width = '100' if analysis.moisture_status == 'Adequate' else '60' %}
+                            <div class="progress-bar bg-{{ 'success' if analysis.moisture_status == 'Adequate' else 'warning' }}" 
+                                 style="width: {{ moisture_width }}%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>Nitrogen Level</span>
+                            <span class="badge bg-{{ 'success' if analysis.nitrogen_status == 'Sufficient' else 'danger' }}">
+                                {{ analysis.nitrogen_status }}
+                            </span>
+                        </div>
+                        <div class="progress" style="height: 8px;">
+                            {% set nitrogen_width = '100' if analysis.nitrogen_status == 'Sufficient' else '40' %}
+                            <div class="progress-bar bg-{{ 'success' if analysis.nitrogen_status == 'Sufficient' else 'danger' }}" 
+                                 style="width: {{ nitrogen_width }}%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>Phosphorus Level</span>
+                            <span class="badge bg-{{ 'success' if analysis.phosphorus_status == 'Sufficient' else 'danger' }}">
+                                {{ analysis.phosphorus_status }}
+                            </span>
+                        </div>
+                        <div class="progress" style="height: 8px;">
+                            {% set phosphorus_width = '100' if analysis.phosphorus_status == 'Sufficient' else '40' %}
+                            <div class="progress-bar bg-{{ 'success' if analysis.phosphorus_status == 'Sufficient' else 'danger' }}" 
+                                 style="width: {{ phosphorus_width }}%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span>Potassium Level</span>
+                            <span class="badge bg-{{ 'success' if analysis.potassium_status == 'Sufficient' else 'danger' }}">
+                                {{ analysis.potassium_status }}
+                            </span>
+                        </div>
+                        <div class="progress" style="height: 8px;">
+                            {% set potassium_width = '100' if analysis.potassium_status == 'Sufficient' else '40' %}
+                            <div class="progress-bar bg-{{ 'success' if analysis.potassium_status == 'Sufficient' else 'danger' }}" 
+                                 style="width: {{ potassium_width }}%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">Recommendations</h6>
+                </div>
+                <div class="card-body">
+                    {% if analysis.recommendations %}
+                    <div class="list-group list-group-flush">
+                        {% for recommendation in analysis.recommendations %}
+                        <div class="list-group-item border-0 px-0">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-lightbulb text-warning me-3 mt-1"></i>
+                                <div>
+                                    <h6 class="mb-1">{{ recommendation }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="text-center py-4">
+                        <i class="fas fa-check-circle fa-3x text-success mb-3"></i>
+                        <h5 class="text-success">Excellent Soil Condition!</h5>
+                        <p class="text-muted">Your soil is in optimal condition for farming.</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Action Buttons -->
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <div class="d-flex gap-2 justify-content-center">
+                <a href="{{ url_for('crops.recommend') }}" class="btn btn-primary">
+                    <i class="fas fa-seedling me-2"></i>Get Crop Recommendations
+                </a>
+                <a href="{{ url_for('reports.generate_report') }}" class="btn btn-success">
+                    <i class="fas fa-file-pdf me-2"></i>Generate Report
+                </a>
+                <a href="{{ url_for('soil.index') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Soil Data
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

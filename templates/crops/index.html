@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ _('My Crop Recommendations') }} - KrishiMitra: Agriband{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="h3 mb-0">
+                    <i class="fas fa-seedling text-warning me-2"></i>{{ _('My Crop Recommendations') }}
+                </h2>
+                <a href="{{ url_for('crops.recommend') }}" class="btn btn-primary">
+                    <i class="fas fa-plus me-2"></i>{{ _('Get New Recommendations') }}
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    {% if recommendations %}
+    <div class="row g-4">
+        {% for rec in recommendations %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h6 class="card-title mb-0">{{ rec.crop.crop_name }}</h6>
+                        <span class="badge bg-{{ 'success' if rec.confidence_score >= 80 else 'warning' if rec.confidence_score >= 60 else 'secondary' }}">
+                            {{ "%.1f"|format(rec.confidence_score) }}%
+                        </span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <div class="progress mb-2" style="height: 8px;">
+                            <div class="progress-bar bg-{{ 'success' if rec.confidence_score >= 80 else 'warning' if rec.confidence_score >= 60 else 'secondary' }}" 
+                                 style="width: {{ rec.confidence_score }}%"></div>
+                        </div>
+                        <small class="text-muted">{{ _('Compatibility Score') }}</small>
+                    </div>
+                    
+                    <div class="row g-2 mb-3">
+                        <div class="col-6">
+                            <small class="text-muted">{{ _('Season') }}</small>
+                            <div class="fw-bold">{{ rec.crop.season }}</div>
+                        </div>
+                        <div class="col-6">
+                            <small class="text-muted">{{ _('Duration') }}</small>
+                            <div class="fw-bold">{{ rec.crop.duration_days }} {{ _('days') }}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <small class="text-muted">{{ _('Recommended on') }}</small>
+                        <div class="fw-bold">{{ rec.recommended_date.strftime('%Y-%m-%d') }}</div>
+                    </div>
+                    
+                    <div class="d-flex gap-2">
+                        <a href="{{ url_for('crops.calendar', crop_id=rec.crop.id) }}" class="btn btn-primary btn-sm flex-fill">
+                            <i class="fas fa-calendar-alt me-1"></i>{{ _('View Calendar') }}
+                        </a>
+                        <a href="{{ url_for('crops.crop_details', crop_id=rec.crop.id) }}" class="btn btn-outline-info btn-sm">
+                            <i class="fas fa-info-circle"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <i class="fas fa-seedling fa-4x text-muted mb-4"></i>
+        <h4 class="text-muted">{{ _('No Crop Recommendations Yet') }}</h4>
+        <p class="text-muted mb-4">{{ _('Get personalized crop recommendations based on your soil and weather data.') }}</p>
+        <a href="{{ url_for('crops.recommend') }}" class="btn btn-primary btn-lg">
+            <i class="fas fa-magic me-2"></i>{{ _('Get Recommendations') }}
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

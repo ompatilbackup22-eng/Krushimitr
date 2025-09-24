@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ _('Add Weather Data') }} - KrishiMitra: Agriband{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-0 shadow">
+                <div class="card-header bg-white border-0 text-center">
+                    <h3 class="h4 fw-bold mb-0">
+                        <i class="fas fa-cloud-sun text-info me-2"></i>{{ _('Add Weather Data') }}
+                    </h3>
+                    <p class="text-muted mt-2">{{ _('Enter current weather conditions') }}</p>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" class="needs-validation" novalidate>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="temperature" class="form-label">{{ _('Temperature') }}</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="temperature" name="temperature" 
+                                           min="-50" max="50" step="0.1" required>
+                                    <span class="input-group-text">°C</span>
+                                </div>
+                                <div class="form-text">{{ _('Range: -50°C to 50°C') }}</div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="humidity" class="form-label">{{ _('Humidity') }}</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="humidity" name="humidity" 
+                                           min="0" max="100" step="0.1" required>
+                                    <span class="input-group-text">%</span>
+                                </div>
+                                <div class="form-text">{{ _('Range: 0-100%%') }}</div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <label for="rainfall" class="form-label">{{ _('Rainfall') }}</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="rainfall" name="rainfall" 
+                                           min="0" step="0.1" required>
+                                    <span class="input-group-text">mm</span>
+                                </div>
+                                <div class="form-text">{{ _('Amount of rainfall in millimeters') }}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a href="{{ url_for('weather.index') }}" class="btn btn-outline-secondary me-md-2">{{ _('Cancel') }}</a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-2"></i>{{ _('Save Weather Data') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

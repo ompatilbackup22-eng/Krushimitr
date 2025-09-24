@@ -1,0 +1,744 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-01 12:00+0000\n"
+"PO-Revision-Date: 2024-01-01 12:00+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: mr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# Navigation translations
+msgid "Home"
+msgstr "मुख्यपृष्ठ"
+
+msgid "About"
+msgstr "आमच्याबद्दल"
+
+msgid "Login"
+msgstr "लॉगिन"
+
+msgid "Register"
+msgstr "नोंदणी"
+
+msgid "Dashboard"
+msgstr "डॅशबोर्ड"
+
+msgid "Profile"
+msgstr "प्रोफाइल"
+
+msgid "Logout"
+msgstr "लॉगआउट"
+
+msgid "Language"
+msgstr "भाषा"
+
+msgid "English"
+msgstr "इंग्रजी"
+
+msgid "Hindi"
+msgstr "हिंदी"
+
+msgid "Marathi"
+msgstr "मराठी"
+
+# Main page translations
+msgid "KrishiMitra: Agriband"
+msgstr "कृषिमित्र: एग्रीबँड"
+
+msgid "Smart Farming Decision Support System"
+msgstr "स्मार्ट शेती निर्णय समर्थन प्रणाली"
+
+msgid "Empowering farmers with smart technology for better crop yields and sustainable farming practices."
+msgstr "चांगल्या पिकाच्या उत्पादनासाठी आणि टिकाऊ शेती पद्धतींसाठी स्मार्ट तंत्रज्ञानाने शेतकऱ्यांना सक्षम करणे."
+
+msgid "Get Started"
+msgstr "सुरु करा"
+
+msgid "Go to Dashboard"
+msgstr "डॅशबोर्डवर जा"
+
+msgid "Smart Farming Made Simple"
+msgstr "स्मार्ट शेती सोपी केली"
+
+# Features section
+msgid "Key Features"
+msgstr "मुख्य वैशिष्ट्ये"
+
+msgid "Soil Analysis"
+msgstr "मातीचे विश्लेषण"
+
+msgid "Get detailed soil analysis and recommendations"
+msgstr "तपशीलवार मातीचे विश्लेषण आणि शिफारसी मिळवा"
+
+msgid "Weather Monitoring"
+msgstr "हवामान निरीक्षण"
+
+msgid "Real-time weather data and forecasts"
+msgstr "रिअल-टाइम हवामान डेटा आणि अंदाज"
+
+msgid "Crop Recommendations"
+msgstr "पिकाच्या शिफारसी"
+
+msgid "AI-powered crop suggestions based on your data"
+msgstr "तुमच्या डेटावर आधारित AI-चालित पीक सुझाव"
+
+msgid "Expert Support"
+msgstr "तज्ञ सहाय्य"
+
+msgid "Connect with agricultural experts"
+msgstr "कृषी तज्ञांशी जोडा"
+
+# How it works section
+msgid "How It Works"
+msgstr "हे कसे काम करते"
+
+msgid "Add Your Data"
+msgstr "तुमचा डेटा जोडा"
+
+msgid "Enter soil test results and weather information"
+msgstr "मातीच्या चाचणीचे निकाल आणि हवामान माहिती प्रविष्ट करा"
+
+msgid "Get Analysis"
+msgstr "विश्लेषण मिळवा"
+
+msgid "Receive detailed analysis and insights"
+msgstr "तपशीलवार विश्लेषण आणि अंतर्दृष्टी मिळवा"
+
+msgid "Follow Recommendations"
+msgstr "शिफारसी पाळा"
+
+msgid "Implement suggested farming practices"
+msgstr "सुझावित शेती पद्धतींची अंमलबजावणी करा"
+
+msgid "Follow Calendar"
+msgstr "कॅलेंडर पाळा"
+
+msgid "Use the crop calendar and alerts for optimal farming"
+msgstr "इष्टतम शेतीसाठी पीक कॅलेंडर आणि अलर्ट वापरा"
+
+# CTA section
+msgid "Ready to Start Smart Farming?"
+msgstr "स्मार्ट शेती सुरू करण्यास तयार आहात?"
+
+msgid "Join thousands of farmers who are already using KrishiMitra to improve their yields"
+msgstr "हजारो शेतकऱ्यांमध्ये सामील व्हा जे आधीच कृषिमित्र वापरून त्यांचे उत्पादन सुधारत आहेत"
+
+msgid "Register Now"
+msgstr "आता नोंदणी करा"
+
+# About page translations
+msgid "About KrishiMitra: Agriband"
+msgstr "कृषिमित्र: एग्रीबँड बद्दल"
+
+msgid "Our Mission"
+msgstr "आमचे मिशन"
+
+msgid "To empower farmers with smart technology and data-driven insights for sustainable and profitable farming practices."
+msgstr "टिकाऊ आणि नफ्याच्या शेती पद्धतींसाठी स्मार्ट तंत्रज्ञान आणि डेटा-चालित अंतर्दृष्टीसह शेतकऱ्यांना सक्षम करणे."
+
+msgid "Our Vision"
+msgstr "आमचे दृष्टीकोन"
+
+msgid "A world where every farmer has access to smart farming tools and knowledge to maximize their agricultural potential."
+msgstr "एक जग जिथे प्रत्येक शेतकऱ्याला त्यांच्या कृषी क्षमतेचा जास्तीत जास्त फायदा घेण्यासाठी स्मार्ट शेती साधने आणि ज्ञान उपलब्ध आहे."
+
+msgid "Key Features"
+msgstr "मुख्य वैशिष्ट्ये"
+
+msgid "Advanced Soil Analysis"
+msgstr "प्रगत मातीचे विश्लेषण"
+
+msgid "Comprehensive soil testing and nutrient analysis for optimal crop planning."
+msgstr "इष्टतम पीक नियोजनासाठी व्यापक मातीच्या चाचणी आणि पोषक तत्वांचे विश्लेषण."
+
+msgid "Weather Intelligence"
+msgstr "हवामान बुद्धिमत्ता"
+
+msgid "Real-time weather monitoring and predictive analytics for better decision making."
+msgstr "चांगल्या निर्णय घेण्यासाठी रिअल-टाइम हवामान निरीक्षण आणि भविष्यसूचक विश्लेषण."
+
+msgid "AI-Powered Recommendations"
+msgstr "AI-चालित शिफारसी"
+
+msgid "Machine learning algorithms provide personalized crop and farming recommendations."
+msgstr "मशीन लर्निंग अल्गोरिदम वैयक्तिकृत पीक आणि शेती शिफारसी प्रदान करतात."
+
+msgid "Expert Support"
+msgstr "तज्ञ सहाय्य"
+
+msgid "Direct access to agricultural experts and extension services."
+msgstr "कृषी तज्ञ आणि विस्तार सेवांमध्ये थेट प्रवेश."
+
+msgid "Why Choose KrishiMitra?"
+msgstr "कृषिमित्र का निवडा?"
+
+msgid "Data-Driven Decisions"
+msgstr "डेटा-चालित निर्णय"
+
+msgid "Make informed farming decisions based on scientific data and analysis."
+msgstr "वैज्ञानिक डेटा आणि विश्लेषणावर आधारित सूचित शेती निर्णय घ्या."
+
+msgid "Cost Effective"
+msgstr "खर्च-प्रभावी"
+
+msgid "Reduce input costs and increase yields through optimized farming practices."
+msgstr "इष्टतम शेती पद्धतींद्वारे इनपुट खर्च कमी करा आणि उत्पादन वाढवा."
+
+msgid "Sustainable Farming"
+msgstr "टिकाऊ शेती"
+
+msgid "Promote environmentally friendly and sustainable agricultural practices."
+msgstr "पर्यावरण-अनुकूल आणि टिकाऊ कृषी पद्धतींना प्रोत्साहन द्या."
+
+msgid "Easy to Use"
+msgstr "वापरण्यास सोपे"
+
+msgid "User-friendly interface designed for farmers of all technical levels."
+msgstr "सर्व तांत्रिक स्तरांच्या शेतकऱ्यांसाठी डिझाइन केलेले वापरकर्ता-अनुकूल इंटरफेस."
+
+msgid "Get Started Today"
+msgstr "आजच सुरु करा"
+
+msgid "Join thousands of farmers who are already benefiting from KrishiMitra's smart farming solutions."
+msgstr "हजारो शेतकऱ्यांमध्ये सामील व्हा जे आधीच कृषिमित्रच्या स्मार्ट शेती उपायांपासून लाभान्वित होत आहेत."
+
+# Dashboard translations
+msgid "Welcome back, %(name)s!"
+msgstr "परत स्वागत आहे, %(name)s!"
+
+msgid "Here's your farming overview for today"
+msgstr "आजच्या दिवसासाठी तुमचा शेती अवलोकन"
+
+msgid "Quick Stats"
+msgstr "द्रुत आकडेवारी"
+
+msgid "Latest Soil Data"
+msgstr "नवीनतम मातीचा डेटा"
+
+msgid "Latest Weather Data"
+msgstr "नवीनतम हवामान डेटा"
+
+msgid "Active Recommendations"
+msgstr "सक्रिय शिफारसी"
+
+msgid "View Details"
+msgstr "तपशील पहा"
+
+msgid "No recent data available"
+msgstr "कोणताही अलीकडील डेटा उपलब्ध नाही"
+
+msgid "Add your first data to get started"
+msgstr "सुरु करण्यासाठी तुमचा पहिला डेटा जोडा"
+
+msgid "Pending Alerts"
+msgstr "प्रलंबित अलर्ट"
+
+msgid "View All Alerts"
+msgstr "सर्व अलर्ट पहा"
+
+msgid "Quick Actions"
+msgstr "द्रुत क्रिया"
+
+msgid "Add Soil Data"
+msgstr "मातीचा डेटा जोडा"
+
+msgid "Add Weather Data"
+msgstr "हवामान डेटा जोडा"
+
+msgid "Get Recommendations"
+msgstr "शिफारसी मिळवा"
+
+msgid "View Reports"
+msgstr "अहवाल पहा"
+
+# Soil data translations
+msgid "Soil Data Management"
+msgstr "मातीच्या डेटाचे व्यवस्थापन"
+
+msgid "Add Soil Data"
+msgstr "मातीचा डेटा जोडा"
+
+msgid "No Soil Data Available"
+msgstr "कोणताही मातीचा डेटा उपलब्ध नाही"
+
+msgid "Start by adding your first soil test data to get personalized recommendations."
+msgstr "वैयक्तिकृत शिफारसी मिळविण्यासाठी तुमचा पहिला मातीच्या चाचणीचा डेटा जोडून सुरुवात करा."
+
+msgid "Are you sure you want to delete this soil data?"
+msgstr "तुम्हाला खरोखर हा मातीचा डेटा हटवायचा आहे का?"
+
+# Crop recommendations translations
+msgid "My Crop Recommendations"
+msgstr "माझ्या पिकाच्या शिफारसी"
+
+msgid "Get New Recommendations"
+msgstr "नवीन शिफारसी मिळवा"
+
+msgid "Compatibility Score"
+msgstr "सुसंगतता स्कोअर"
+
+msgid "Season"
+msgstr "हंगाम"
+
+msgid "Duration"
+msgstr "कालावधी"
+
+msgid "Recommended on"
+msgstr "शिफारस केले"
+
+msgid "View Calendar"
+msgstr "कॅलेंडर पहा"
+
+msgid "No Crop Recommendations Yet"
+msgstr "अद्याप कोणताही पीक शिफारस नाही"
+
+msgid "Get personalized crop recommendations based on your soil and weather data."
+msgstr "तुमच्या माती आणि हवामान डेटावर आधारित वैयक्तिकृत पीक शिफारसी मिळवा."
+
+# Auth form translations
+msgid "Welcome Back"
+msgstr "परत स्वागत आहे"
+
+msgid "Sign in to your KrishiMitra account"
+msgstr "तुमच्या कृषिमित्र खात्यात साइन इन करा"
+
+msgid "Mobile Number"
+msgstr "मोबाइल नंबर"
+
+msgid "Password"
+msgstr "पासवर्ड"
+
+msgid "Sign In"
+msgstr "साइन इन करा"
+
+msgid "Don't have an account? Register here"
+msgstr "खाते नाही? येथे नोंदणी करा"
+
+msgid "Create Account"
+msgstr "खाते तयार करा"
+
+msgid "Join KrishiMitra and start smart farming"
+msgstr "कृषिमित्रमध्ये सामील व्हा आणि स्मार्ट शेती सुरू करा"
+
+msgid "Full Name"
+msgstr "पूर्ण नाव"
+
+msgid "Village"
+msgstr "गाव"
+
+msgid "Tehsil"
+msgstr "तालुका"
+
+msgid "District"
+msgstr "जिल्हा"
+
+msgid "State"
+msgstr "राज्य"
+
+msgid "Already have an account? Login here"
+msgstr "आधीच खाते आहे? येथे लॉगिन करा"
+
+msgid "Pincode"
+msgstr "पिनकोड"
+
+msgid "Confirm Password"
+msgstr "पासवर्डची पुष्टी करा"
+
+# Crop Knowledge Base translations
+msgid "Crop Knowledge Base"
+msgstr "पीक ज्ञान आधार"
+
+msgid "Comprehensive information about different crops and their requirements"
+msgstr "विविध पिकांबद्दल आणि त्यांच्या आवश्यकतांबद्दल व्यापक माहिती"
+
+msgid "All Seasons"
+msgstr "सर्व हंगाम"
+
+msgid "Kharif"
+msgstr "खरीप"
+
+msgid "Rabi"
+msgstr "रबी"
+
+msgid "Summer"
+msgstr "उन्हाळा"
+
+msgid "Duration"
+msgstr "कालावधी"
+
+msgid "days"
+msgstr "दिवस"
+
+msgid "pH Range"
+msgstr "pH श्रेणी"
+
+msgid "Temperature"
+msgstr "तापमान"
+
+msgid "Moisture"
+msgstr "ओलावा"
+
+msgid "Nutrient Requirements"
+msgstr "पोषक तत्वांच्या आवश्यकता"
+
+msgid "View Details"
+msgstr "तपशील पहा"
+
+msgid "No Crops Available"
+msgstr "कोणतेही पीक उपलब्ध नाही"
+
+msgid "Crop information will be available soon."
+msgstr "पीक माहिती लवकरच उपलब्ध होईल."
+
+# Weather page translations
+msgid "Weather Data Management"
+msgstr "हवामान डेटा व्यवस्थापन"
+
+msgid "Fetch Weather"
+msgstr "हवामान डेटा मिळवा"
+
+msgid "Add Weather Data"
+msgstr "हवामान डेटा जोडा"
+
+msgid "No Weather Data Available"
+msgstr "कोणताही हवामान डेटा उपलब्ध नाही"
+
+msgid "Add weather data to get accurate crop recommendations."
+msgstr "अचूक पिकाच्या शिफारसी मिळविण्यासाठी हवामान डेटा जोडा."
+
+msgid "Weather Forecast & Analysis"
+msgstr "हवामान अंदाज आणि विश्लेषण"
+
+msgid "Based on recent weather patterns and trends"
+msgstr "अलीकडील हवामान पॅटर्न आणि प्रवृत्तींवर आधारित"
+
+msgid "Current Weather Conditions"
+msgstr "सध्याची हवामान स्थिती"
+
+msgid "Trend"
+msgstr "प्रवृत्ती"
+
+msgid "Weather-Based Recommendations"
+msgstr "हवामान-आधारित शिफारसी"
+
+msgid "Recent Weather History"
+msgstr "अलीकडील हवामान इतिहास"
+
+msgid "Date"
+msgstr "तारीख"
+
+msgid "Actions"
+msgstr "क्रिया"
+
+msgid "Get Crop Recommendations"
+msgstr "पिकाच्या शिफारसी मिळवा"
+
+msgid "Back to Weather Data"
+msgstr "हवामान डेटाकडे परत जा"
+
+msgid "Add Weather Data"
+msgstr "हवामान डेटा जोडा"
+
+msgid "Enter current weather conditions"
+msgstr "सध्याची हवामान स्थिती प्रविष्ट करा"
+
+msgid "Range: -50°C to 50°C"
+msgstr "श्रेणी: -50°C ते 50°C"
+
+msgid "Range: 0-100%"
+msgstr "श्रेणी: 0-100%"
+
+msgid "Amount of rainfall in millimeters"
+msgstr "मिलिमीटरमध्ये पाऊसाचे प्रमाण"
+
+msgid "Submit"
+msgstr "सबमिट करा"
+
+msgid "Weather Data Details"
+msgstr "हवामान डेटा तपशील"
+
+msgid "Forecast"
+msgstr "अंदाज"
+
+msgid "Back to List"
+msgstr "यादीकडे परत जा"
+
+msgid "Weather Conditions"
+msgstr "हवामान स्थिती"
+
+msgid "Cool"
+msgstr "थंड"
+
+msgid "Hot"
+msgstr "गरम"
+
+msgid "Moderate"
+msgstr "मध्यम"
+
+msgid "Dry"
+msgstr "कोरडे"
+
+msgid "Wet"
+msgstr "ओले"
+
+msgid "Normal"
+msgstr "सामान्य"
+
+msgid "Low"
+msgstr "कमी"
+
+msgid "High"
+msgstr "उच्च"
+
+msgid "Are you sure you want to delete this weather data?"
+msgstr "तुम्हाला खरोखर हा हवामान डेटा हटवायचा आहे का?"
+
+msgid "Save Weather Data"
+msgstr "हवामान डेटा जतन करा"
+
+msgid "Humid"
+msgstr "ओले"
+
+msgid "Comfortable"
+msgstr "आरामदायक"
+
+msgid "No Rain"
+msgstr "पाऊस नाही"
+
+msgid "Light Rain"
+msgstr "हलका पाऊस"
+
+msgid "Moderate Rain"
+msgstr "मध्यम पाऊस"
+
+msgid "Heavy Rain"
+msgstr "जोरदार पाऊस"
+
+msgid "Additional Information"
+msgstr "अतिरिक्त माहिती"
+
+msgid "Recorded Date"
+msgstr "नोंदवलेली तारीख"
+
+# Crop Recommendations page translations
+msgid "Based on your soil and weather data for %(season)s season"
+msgstr "तुमच्या माती आणि हवामान डेटावर आधारित %(season)s हंगामासाठी"
+
+msgid "Current Soil Conditions"
+msgstr "सध्याची मातीची स्थिती"
+
+msgid "Current Weather Conditions"
+msgstr "सध्याची हवामान स्थिती"
+
+msgid "Compatibility Score"
+msgstr "सुसंगतता स्कोअर"
+
+msgid "Add to My Crops"
+msgstr "माझ्या पिकांमध्ये जोडा"
+
+msgid "No Suitable Crops Found"
+msgstr "कोणतेही योग्य पीक सापडले नाही"
+
+msgid "Based on your current soil and weather conditions, no crops meet the minimum compatibility threshold."
+msgstr "तुमच्या सध्याच्या माती आणि हवामान स्थितीवर आधारित, कोणतेही पीक किमान सुसंगतता उंबरठा पूर्ण करत नाही."
+
+msgid "Update Soil Data"
+msgstr "मातीचा डेटा अपडेट करा"
+
+msgid "Update Weather Data"
+msgstr "हवामान डेटा अपडेट करा"
+
+msgid "View All Crops"
+msgstr "सर्व पिके पहा"
+
+msgid "Back to Dashboard"
+msgstr "डॅशबोर्डवर परत जा"
+
+# Additional comprehensive translations for all remaining templates
+msgid "Alerts & Notifications"
+msgstr "अलर्ट आणि सूचना"
+
+msgid "Generate Alerts"
+msgstr "अलर्ट तयार करा"
+
+msgid "Upcoming Alerts"
+msgstr "आगामी अलर्ट"
+
+msgid "All Alerts"
+msgstr "सर्व अलर्ट"
+
+msgid "Pending"
+msgstr "प्रलंबित"
+
+msgid "Completed"
+msgstr "पूर्ण"
+
+msgid "Expert Support"
+msgstr "तज्ञ सहाय्य"
+
+msgid "Get help from agricultural experts"
+msgstr "कृषी तज्ञांकडून मदत मिळवा"
+
+msgid "Ask a Question"
+msgstr "प्रश्न विचारा"
+
+msgid "Have a farming question? Our experts are here to help you."
+msgstr "शेतीचा प्रश्न आहे? आमचे तज्ञ तुम्हाला मदत करण्यासाठी येथे आहेत."
+
+msgid "Submit Question"
+msgstr "प्रश्न सबमिट करा"
+
+msgid "Frequently Asked Questions"
+msgstr "वारंवार विचारले जाणारे प्रश्न"
+
+msgid "Find quick answers to common farming questions."
+msgstr "सामान्य शेती प्रश्नांची द्रुत उत्तरे शोधा."
+
+msgid "View FAQ"
+msgstr "FAQ पहा"
+
+msgid "Educational Videos"
+msgstr "शैक्षणिक व्हिडिओ"
+
+msgid "Search Videos"
+msgstr "व्हिडिओ शोधा"
+
+msgid "Best Management Practices (BMP) for smart farming"
+msgstr "स्मार्ट शेतीसाठी सर्वोत्तम व्यवस्थापन पद्धती (BMP)"
+
+msgid "All Categories"
+msgstr "सर्व श्रेण्या"
+
+msgid "Soil Management"
+msgstr "माती व्यवस्थापन"
+
+msgid "Fertilizer Management"
+msgstr "खत व्यवस्थापन"
+
+msgid "Irrigation"
+msgstr "सिंचन"
+
+msgid "Pest Management"
+msgstr "कीट व्यवस्थापन"
+
+msgid "Crop Management"
+msgstr "पीक व्यवस्थापन"
+
+msgid "Watch Video"
+msgstr "व्हिडिओ पहा"
+
+msgid "Reports & Analytics"
+msgstr "अहवाल आणि विश्लेषण"
+
+msgid "Generate comprehensive reports for your farming data"
+msgstr "तुमच्या शेती डेटासाठी व्यापक अहवाल तयार करा"
+
+msgid "No data"
+msgstr "डेटा नाही"
+
+msgid "Add Soil Data"
+msgstr "मातीचा डेटा जोडा"
+
+msgid "Enter your soil test results for analysis"
+msgstr "विश्लेषणासाठी तुमचे मातीच्या चाचणीचे निकाल प्रविष्ट करा"
+
+msgid "pH Level"
+msgstr "pH स्तर"
+
+msgid "Range: 0-14 (Optimal: 6.0-7.5)"
+msgstr "श्रेणी: 0-14 (इष्टतम: 6.0-7.5)"
+
+msgid "Moisture Level"
+msgstr "ओलावा स्तर"
+
+msgid "Range: 0-100%"
+msgstr "श्रेणी: 0-100%"
+
+msgid "Nitrogen (N)"
+msgstr "नायट्रोजन (N)"
+
+msgid "Phosphorus (P)"
+msgstr "फॉस्फरस (P)"
+
+msgid "Potassium (K)"
+msgstr "पोटॅशियम (K)"
+
+msgid "Soil Type"
+msgstr "मातीचा प्रकार"
+
+msgid "Clay"
+msgstr "चिकणमाती"
+
+msgid "Sandy"
+msgstr "वाळूची"
+
+msgid "Loamy"
+msgstr "दोमट"
+
+msgid "Silty"
+msgstr "गाळाची"
+
+msgid "Save Soil Data"
+msgstr "मातीचा डेटा जतन करा"
+
+msgid "Crop Information"
+msgstr "पीक माहिती"
+
+msgid "Crop Name:"
+msgstr "पीक नाव:"
+
+msgid "Duration:"
+msgstr "कालावधी:"
+
+msgid "Back to Crops"
+msgstr "पिकांकडे परत जा"
+
+# Additional translations for remaining templates
+msgid "Upcoming Alerts (Next 7 Days)"
+msgstr "आगामी अलर्ट (पुढील 7 दिवस)"
+
+msgid "Back to All Alerts"
+msgstr "सर्व अलर्टकडे परत जा"
+
+msgid "Contact Support"
+msgstr "सहाय्याशी संपर्क साधा"
+
+msgid "Get in touch with our support team"
+msgstr "आमच्या सहाय्य टीमशी संपर्क साधा"
+
+msgid "Contact Information"
+msgstr "संपर्क माहिती"
+
+msgid "Email Support"
+msgstr "ईमेल सहाय्य"
+
+msgid "Phone Support"
+msgstr "फोन सहाय्य"
+
+msgid "Edit Profile"
+msgstr "प्रोफाइल संपादित करा"
+
+msgid "Back to Profile"
+msgstr "प्रोफाइलकडे परत जा"
+
+msgid "Update Profile Information"
+msgstr "प्रोफाइल माहिती अपडेट करा"
+
+msgid "Keep your information up to date"
+msgstr "तुमची माहिती अद्ययावत ठेवा"
+
+msgid "Calendar"
+msgstr "कॅलेंडर"
+
+msgid "active"
+msgstr "सक्रिय"

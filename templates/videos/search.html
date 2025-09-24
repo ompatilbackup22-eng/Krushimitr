@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Search Videos - KrishiMitra: Agriband{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="h3 mb-0">
+                <i class="fas fa-search text-secondary me-2"></i>Search Videos
+            </h2>
+            <p class="text-muted mt-2">Find educational videos on specific topics</p>
+        </div>
+    </div>
+    
+    <!-- Search Form -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <form method="GET" action="{{ url_for('videos.search') }}">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="q" value="{{ query }}" 
+                                   placeholder="Search for videos..." required>
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Search Results -->
+    {% if query %}
+    <div class="row mb-4">
+        <div class="col-12">
+            <h5>Search Results for "{{ query }}"</h5>
+            <p class="text-muted">{{ videos|length }} video(s) found</p>
+        </div>
+    </div>
+    {% endif %}
+    
+    {% if videos %}
+    <div class="row g-4">
+        {% for video in videos %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card border-0 shadow-sm video-card">
+                <div class="video-thumbnail">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <span class="badge bg-secondary">{{ video.category }}</span>
+                        <small class="text-muted">{{ video.created_at.strftime('%Y-%m-%d') }}</small>
+                    </div>
+                    <h6 class="card-title">{{ video.title }}</h6>
+                    <p class="card-text text-muted small">{{ video.description[:100] }}{% if video.description|length > 100 %}...{% endif %}</p>
+                    <a href="{{ url_for('videos.view', video_id=video.id) }}" class="btn btn-primary btn-sm w-100">
+                        <i class="fas fa-play me-2"></i>Watch Video
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% elif query %}
+    <div class="text-center py-5">
+        <i class="fas fa-search fa-4x text-muted mb-4"></i>
+        <h4 class="text-muted">No Videos Found</h4>
+        <p class="text-muted mb-4">Try searching with different keywords.</p>
+        <a href="{{ url_for('videos.index') }}" class="btn btn-primary">
+            <i class="fas fa-arrow-left me-2"></i>Back to All Videos
+        </a>
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <i class="fas fa-search fa-4x text-muted mb-4"></i>
+        <h4 class="text-muted">Search for Videos</h4>
+        <p class="text-muted mb-4">Enter keywords to find educational videos on specific topics.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

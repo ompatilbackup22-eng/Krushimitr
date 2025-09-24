@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}Weather Data History - KrishiMitra: Agriband{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="h3 mb-0">
+                    <i class="fas fa-chart-line text-info me-2"></i>Weather Data History
+                </h2>
+                <a href="{{ url_for('reports.index') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Reports
+                </a>
+            </div>
+            <p class="text-muted mt-2">Track weather conditions over time</p>
+        </div>
+    </div>
+    
+    {% if weather_data %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">Weather History</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Temperature (°C)</th>
+                                    <th>Humidity (%)</th>
+                                    <th>Rainfall (mm)</th>
+                                    <th>Weather Summary</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for weather in weather_data %}
+                                <tr>
+                                    <td>{{ weather.date.strftime('%Y-%m-%d') }}</td>
+                                    <td>
+                                        <span class="badge bg-{{ 'info' if weather.temperature < 15 else 'success' if 15 <= weather.temperature <= 30 else 'warning' }}">
+                                            {{ "%.1f"|format(weather.temperature) }}°C
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-{{ 'warning' if weather.humidity < 40 else 'success' if 40 <= weather.humidity <= 80 else 'primary' }}">
+                                            {{ "%.1f"|format(weather.humidity) }}%
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-{{ 'secondary' if weather.rainfall == 0 else 'info' if weather.rainfall < 10 else 'primary' if weather.rainfall < 25 else 'warning' }}">
+                                            {{ "%.1f"|format(weather.rainfall) }}mm
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {% if weather.temperature > 30 and weather.humidity > 70 %}
+                                            Hot and Humid
+                                        {% elif weather.temperature < 15 %}
+                                            Cool Weather
+                                        {% elif weather.rainfall > 10 %}
+                                            Rainy Conditions
+                                        {% else %}
+                                            Pleasant Weather
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="{{ url_for('weather.view', weather_id=weather.id) }}" class="btn btn-outline-info btn-sm">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <i class="fas fa-cloud-sun fa-4x text-muted mb-4"></i>
+        <h4 class="text-muted">No Weather Data Available</h4>
+        <p class="text-muted mb-4">Start by adding your first weather data.</p>
+        <a href="{{ url_for('weather.add') }}" class="btn btn-info">
+            <i class="fas fa-plus me-2"></i>Add Weather Data
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

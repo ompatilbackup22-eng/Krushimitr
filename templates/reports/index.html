@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Reports') }} - KrishiMitra: Agriband{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="h3 mb-0">
+                <i class="fas fa-file-pdf text-success me-2"></i>{{ _('Reports & Analytics') }}
+            </h2>
+            <p class="text-muted mt-2">{{ _('Generate comprehensive reports for your farming data') }}</p>
+        </div>
+    </div>
+    
+    <!-- Quick Stats -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm text-center">
+                <div class="card-body">
+                    <i class="fas fa-flask fa-2x text-primary mb-3"></i>
+                    <h5 class="card-title">{{ _('Soil Tests') }}</h5>
+                    <p class="card-text text-muted">{{ latest_soil.date.strftime('%Y-%m-%d') if latest_soil else _('No data') }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm text-center">
+                <div class="card-body">
+                    <i class="fas fa-cloud-sun fa-2x text-info mb-3"></i>
+                    <h5 class="card-title">{{ _('Weather Data') }}</h5>
+                    <p class="card-text text-muted">{{ latest_weather.date.strftime('%Y-%m-%d') if latest_weather else _('No data') }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm text-center">
+                <div class="card-body">
+                    <i class="fas fa-seedling fa-2x text-warning mb-3"></i>
+                    <h5 class="card-title">{{ _('Crop Recommendations') }}</h5>
+                    <p class="card-text text-muted">{{ recommendations|length }} {{ _('active') }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm text-center">
+                <div class="card-body">
+                    <i class="fas fa-bell fa-2x text-danger mb-3"></i>
+                    <h5 class="card-title">Pending Alerts</h5>
+                    <p class="card-text text-muted">{{ pending_alerts|length }} alerts</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Report Generation -->
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">
+                        <i class="fas fa-file-pdf text-success me-2"></i>Comprehensive Report
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted mb-3">Generate a complete PDF report including soil analysis, crop recommendations, and farming schedule.</p>
+                    <a href="{{ url_for('reports.generate_report') }}" class="btn btn-success w-100">
+                        <i class="fas fa-download me-2"></i>Generate PDF Report
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">
+                        <i class="fas fa-chart-line text-primary me-2"></i>Data History
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-muted mb-3">View historical data and trends for soil and weather conditions.</p>
+                    <div class="d-flex gap-2">
+                        <a href="{{ url_for('reports.soil_history') }}" class="btn btn-outline-primary flex-fill">
+                            <i class="fas fa-flask me-1"></i>Soil History
+                        </a>
+                        <a href="{{ url_for('reports.weather_history') }}" class="btn btn-outline-info flex-fill">
+                            <i class="fas fa-cloud-sun me-1"></i>Weather History
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recent Data Summary -->
+    {% if latest_soil or latest_weather %}
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0">
+                    <h6 class="card-title mb-0">
+                        <i class="fas fa-chart-bar text-info me-2"></i>Latest Data Summary
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% if latest_soil %}
+                        <div class="col-md-6">
+                            <h6 class="text-primary">Latest Soil Analysis</h6>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <small class="text-muted">pH Level</small>
+                                    <div class="fw-bold">{{ "%.2f"|format(latest_soil.ph) }}</div>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">Moisture</small>
+                                    <div class="fw-bold">{{ "%.1f"|format(latest_soil.moisture) }}%</div>
+                                </div>
+                                <div class="col-4">
+                                    <small class="text-muted">Nitrogen</small>
+                                    <div class="fw-bold">{{ "%.1f"|format(latest_soil.nitrogen) }}</div>
+                                </div>
+                                <div class="col-4">
+                                    <small class="text-muted">Phosphorus</small>
+                                    <div class="fw-bold">{{ "%.1f"|format(latest_soil.phosphorus) }}</div>
+                                </div>
+                                <div class="col-4">
+                                    <small class="text-muted">Potassium</small>
+                                    <div class="fw-bold">{{ "%.1f"|format(latest_soil.potassium) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        
+                        {% if latest_weather %}
+                        <div class="col-md-6">
+                            <h6 class="text-info">Latest Weather Data</h6>
+                            <div class="row g-2">
+                                <div class="col-4">
+                                    <small class="text-muted">Temperature</small>
+                                    <div class="fw-bold">{{ "%.1f"|format(latest_weather.temperature) }}°C</div>
+                                </div>
+                                <div class="col-4">
+                                    <small class="text-muted">Humidity</small>
+                                    <div class="fw-bold">{{ "%.1f"|format(latest_weather.humidity) }}%</div>
+                                </div>
+                                <div class="col-4">
+                                    <small class="text-muted">Rainfall</small>
+                                    <div class="fw-bold">{{ "%.1f"|format(latest_weather.rainfall) }}mm</div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('Alerts & Notifications') }} - KrishiMitra: Agriband{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="h3 mb-0">
+                    <i class="fas fa-bell text-danger me-2"></i>{{ _('Alerts & Notifications') }}
+                </h2>
+                <div class="d-flex gap-2">
+                    <a href="{{ url_for('alerts.generate_alerts') }}" class="btn btn-warning">
+                        <i class="fas fa-sync-alt me-2"></i>{{ _('Generate Alerts') }}
+                    </a>
+                    <a href="{{ url_for('alerts.upcoming') }}" class="btn btn-info">
+                        <i class="fas fa-clock me-2"></i>{{ _('Upcoming Alerts') }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% if alerts %}
+    <!-- Filter Tabs -->
+    <ul class="nav nav-tabs mb-4" id="alertTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab">
+                {{ _('All Alerts') }} <span class="badge bg-secondary ms-1">{{ alerts|length }}</span>
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" type="button" role="tab">
+                {{ _('Pending') }} <span class="badge bg-warning ms-1">{{ alerts|selectattr('status', 'equalto', 'pending')|list|length }}</span>
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="completed-tab" data-bs-toggle="tab" data-bs-target="#completed" type="button" role="tab">
+                {{ _('Completed') }} <span class="badge bg-success ms-1">{{ alerts|selectattr('status', 'equalto', 'completed')|list|length }}</span>
+            </button>
+        </li>
+    </ul>
+    
+    <!-- Alert Content -->
+    <div class="tab-content" id="alertTabContent">
+        <div class="tab-pane fade show active" id="all" role="tabpanel">
+            <div class="row g-4">
+                {% for alert in alerts %}
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm alert-card {{ alert.alert_type }}">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="fas fa-{{ 'tint' if alert.alert_type == 'irrigation' else 'flask' if alert.alert_type == 'fertilizer' else 'spray-can' if alert.alert_type == 'spray' else 'harvest' }} 
+                                           text-{{ 'info' if alert.alert_type == 'irrigation' else 'warning' if alert.alert_type == 'fertilizer' else 'success' if alert.alert_type == 'spray' else 'primary' }} me-3"></i>
+                                        <h6 class="card-title mb-0">{{ alert.alert_type.title() }} - {{ alert.crop.crop_name }}</h6>
+                                        <span class="badge bg-{{ 'warning' if alert.status == 'pending' else 'success' if alert.status == 'completed' else 'secondary' }} ms-2">
+                                            {{ alert.status.title() }}
+                                        </span>
+                                    </div>
+                                    <p class="card-text text-muted mb-2">{{ alert.message }}</p>
+                                    <small class="text-muted">
+                                        <i class="fas fa-calendar-alt me-1"></i>{{ alert.alert_date.strftime('%Y-%m-%d %H:%M') }}
+                                    </small>
+                                </div>
+                                <div class="col-md-4 text-md-end">
+                                    {% if alert.status == 'pending' %}
+                                    <div class="d-flex gap-2 justify-content-md-end">
+                                        <form method="POST" action="{{ url_for('alerts.complete_alert', alert_id=alert.id) }}" class="d-inline">
+                                            <button type="submit" class="btn btn-success btn-sm">
+                                                <i class="fas fa-check me-1"></i>Mark Complete
+                                            </button>
+                                        </form>
+                                        <form method="POST" action="{{ url_for('alerts.dismiss_alert', alert_id=alert.id) }}" class="d-inline">
+                                            <button type="submit" class="btn btn-outline-secondary btn-sm">
+                                                <i class="fas fa-times me-1"></i>Dismiss
+                                            </button>
+                                        </form>
+                                    </div>
+                                    {% else %}
+                                    <div class="d-flex gap-2 justify-content-md-end">
+                                        <form method="POST" action="{{ url_for('alerts.delete_alert', alert_id=alert.id) }}" class="d-inline">
+                                            <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to delete this alert?')">
+                                                <i class="fas fa-trash me-1"></i>Delete
+                                            </button>
+                                        </form>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="tab-pane fade" id="pending" role="tabpanel">
+            <div class="row g-4">
+                {% for alert in alerts %}
+                {% if alert.status == 'pending' %}
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm alert-card {{ alert.alert_type }}">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="fas fa-{{ 'tint' if alert.alert_type == 'irrigation' else 'flask' if alert.alert_type == 'fertilizer' else 'spray-can' if alert.alert_type == 'spray' else 'harvest' }} 
+                                           text-{{ 'info' if alert.alert_type == 'irrigation' else 'warning' if alert.alert_type == 'fertilizer' else 'success' if alert.alert_type == 'spray' else 'primary' }} me-3"></i>
+                                        <h6 class="card-title mb-0">{{ alert.alert_type.title() }} - {{ alert.crop.crop_name }}</h6>
+                                        <span class="badge bg-warning ms-2">Pending</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-2">{{ alert.message }}</p>
+                                    <small class="text-muted">
+                                        <i class="fas fa-calendar-alt me-1"></i>{{ alert.alert_date.strftime('%Y-%m-%d %H:%M') }}
+                                    </small>
+                                </div>
+                                <div class="col-md-4 text-md-end">
+                                    <div class="d-flex gap-2 justify-content-md-end">
+                                        <form method="POST" action="{{ url_for('alerts.complete_alert', alert_id=alert.id) }}" class="d-inline">
+                                            <button type="submit" class="btn btn-success btn-sm">
+                                                <i class="fas fa-check me-1"></i>Mark Complete
+                                            </button>
+                                        </form>
+                                        <form method="POST" action="{{ url_for('alerts.dismiss_alert', alert_id=alert.id) }}" class="d-inline">
+                                            <button type="submit" class="btn btn-outline-secondary btn-sm">
+                                                <i class="fas fa-times me-1"></i>Dismiss
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="tab-pane fade" id="completed" role="tabpanel">
+            <div class="row g-4">
+                {% for alert in alerts %}
+                {% if alert.status == 'completed' %}
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm alert-card {{ alert.alert_type }}">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="fas fa-{{ 'tint' if alert.alert_type == 'irrigation' else 'flask' if alert.alert_type == 'fertilizer' else 'spray-can' if alert.alert_type == 'spray' else 'harvest' }} 
+                                           text-{{ 'info' if alert.alert_type == 'irrigation' else 'warning' if alert.alert_type == 'fertilizer' else 'success' if alert.alert_type == 'spray' else 'primary' }} me-3"></i>
+                                        <h6 class="card-title mb-0">{{ alert.alert_type.title() }} - {{ alert.crop.crop_name }}</h6>
+                                        <span class="badge bg-success ms-2">Completed</span>
+                                    </div>
+                                    <p class="card-text text-muted mb-2">{{ alert.message }}</p>
+                                    <small class="text-muted">
+                                        <i class="fas fa-calendar-alt me-1"></i>{{ alert.alert_date.strftime('%Y-%m-%d %H:%M') }}
+                                    </small>
+                                </div>
+                                <div class="col-md-4 text-md-end">
+                                    <form method="POST" action="{{ url_for('alerts.delete_alert', alert_id=alert.id) }}" class="d-inline">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to delete this alert?')">
+                                            <i class="fas fa-trash me-1"></i>Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <i class="fas fa-bell fa-4x text-muted mb-4"></i>
+        <h4 class="text-muted">No Alerts Available</h4>
+        <p class="text-muted mb-4">Generate alerts for your crop recommendations to get timely reminders.</p>
+        <a href="{{ url_for('alerts.generate_alerts') }}" class="btn btn-warning btn-lg">
+            <i class="fas fa-sync-alt me-2"></i>Generate Alerts
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

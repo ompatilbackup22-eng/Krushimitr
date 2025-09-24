@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ _('Login') }} - KrishiMitra: Agriband{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card border-0 shadow">
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-seedling text-success fa-3x mb-3"></i>
+                        <h2 class="h4 fw-bold">{{ _('Welcome Back') }}</h2>
+                        <p class="text-muted">{{ _('Sign in to your KrishiMitra account') }}</p>
+                    </div>
+                    
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="mobile" class="form-label">{{ _('Mobile Number') }}</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
+                                <input type="tel" class="form-control" id="mobile" name="mobile" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="password" class="form-label">{{ _('Password') }}</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success btn-lg">{{ _('Sign In') }}</button>
+                        </div>
+                    </form>
+                    
+                    <div class="text-center mt-4">
+                        <p class="mb-0">{{ _('Don\'t have an account? Register here') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

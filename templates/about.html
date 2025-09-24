@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}{{ _('About KrishiMitra: Agriband') }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="display-4 fw-bold text-center mb-5">{{ _('About KrishiMitra: Agriband') }}</h1>
+            
+            <div class="card border-0 shadow-sm mb-5">
+                <div class="card-body p-5">
+                    <h2 class="h3 mb-4">{{ _('Our Mission') }}</h2>
+                    <p class="lead">{{ _('To empower farmers with smart technology and data-driven insights for sustainable and profitable farming practices.') }}</p>
+                    
+                    <h2 class="h3 mb-4 mt-5">{{ _('What We Do') }}</h2>
+                    <p>{{ _('KrishiMitra: Agriband is a comprehensive smart farming decision support system designed specifically for Indian farmers. We combine soil analysis, weather monitoring, and agricultural expertise to provide personalized recommendations for better crop yields.') }}</p>
+                    
+                    <h2 class="h3 mb-4 mt-5">{{ _('Key Features') }}</h2>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ _('Soil testing and analysis') }}</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ _('Real-time weather monitoring') }}</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ _('AI-powered crop recommendations') }}</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ _('Detailed crop calendars') }}</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ _('Smart alerts and reminders') }}</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ _('Educational video content') }}</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ _('Expert support system') }}</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>{{ _('Comprehensive reporting') }}</li>
+                    </ul>
+                    
+                    <h2 class="h3 mb-4 mt-5">{{ _('Our Vision') }}</h2>
+                    <p>{{ _('To create a sustainable future for agriculture by making advanced farming technologies accessible to every farmer, regardless of their location or resources.') }}</p>
+                    
+                    <h2 class="h3 mb-4 mt-5">{{ _('Technology Stack') }}</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>{{ _('Backend') }}</h5>
+                            <ul>
+                                <li>{{ _('Python Flask Framework') }}</li>
+                                <li>{{ _('SQLite Database') }}</li>
+                                <li>{{ _('RESTful API Design') }}</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>{{ _('Frontend') }}</h5>
+                            <ul>
+                                <li>{{ _('HTML5 & CSS3') }}</li>
+                                <li>{{ _('Bootstrap 5') }}</li>
+                                <li>{{ _('JavaScript') }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h2 class="h3 mb-4 mt-5">{{ _('Our Founders') }}</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm mb-3">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-user-circle fa-3x text-primary mb-3"></i>
+                                    <h5 class="card-title">Kapse Shraddha</h5>
+                                    <p class="card-text text-muted">{{ _('Co-Founder & CEO') }}</p>
+                                    <p class="card-text small">{{ _('Visionary leader driving innovation in agricultural technology and farmer empowerment.') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm mb-3">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-user-circle fa-3x text-success mb-3"></i>
+                                    <h5 class="card-title"></h5>
+                                    <p class="card-text text-muted">{{ _('') }}</p>
+                                    <p class="card-text small">{{ _('') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2 class="h3 mb-4 mt-5">{{ _('Contact Us') }}</h2>
+                    <p>{{ _('For support, questions, or feedback, please reach out to us:') }}</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-envelope me-2"></i>support@krishimitra.com</li>
+                        <li><i class="fas fa-phone me-2"></i>+91-XXX-XXX-XXXX</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i>India</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
